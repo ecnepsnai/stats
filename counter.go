@@ -63,3 +63,13 @@ func (c *Counter) Get() uint64 {
 
 	return c.value
 }
+
+// GetAndSet will update the value of this counter to n and return the previous value from before the update
+func (c *Counter) GetAndSet(n uint64) uint64 {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+
+	v := c.value
+	c.value = n
+	return v
+}

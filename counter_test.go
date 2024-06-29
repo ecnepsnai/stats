@@ -32,4 +32,10 @@ func TestCounter(t *testing.T) {
 	if c.Get() != 0 {
 		t.Errorf("Unexpected counter value. Expected 0 got %d", c.Get())
 	}
+	if v := c.GetAndSet(1); v != 0 {
+		t.Errorf("Unexpected counter value. Expected 0 got %d", v)
+	}
+	if c.Get() != 1 {
+		t.Errorf("Unexpected counter value. Expected 1 got %d", c.Get())
+	}
 }
